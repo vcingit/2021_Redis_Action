@@ -102,6 +102,11 @@ def GetTopArticle(conn, page, score_db = SCORE_ZSET_PREFIX):
 
     return articles
 
+'''
+extra func
+1.add group for each articles
+2.get top famous articles with group
+'''
 def AddRemoveGroup(conn, article, addlist = [], remlist = []):
     for one_group in addlist:
         group_key = GROUP_SET_PREFIX + str(one_group)

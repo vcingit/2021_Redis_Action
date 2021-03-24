@@ -21,9 +21,14 @@ def RunFunc(func):
 def ASSERT_RESULT(out_result, symbol, need_result, err_msg):
     call_name = sys._getframe(1).f_code.co_name
     call_line = sys._getframe(0).f_back.f_lineno
-    err_msg = "[" + str(call_name) + ":" + str(call_line) + "] " + err_msg + ". output:" + str(out_result) + " vs need:" + str(need_result)
+    err_msg = ("[" + str(call_name) + ":" + str(call_line) + "] " + err_msg + 
+                ". output:" + str(out_result) + "(" + str(type(out_result)) + ")" +
+                " vs need:" + str(need_result) + "(" + str(type(need_result)) + ")")
+
     if symbol == '==':
         assert out_result == need_result, err_msg
+    elif symbol == '!=':
+        assert out_result != need_result, err_msg
     elif symbol == '<':
         assert out_result < need_result, err_msg
     elif symbol == '>':
